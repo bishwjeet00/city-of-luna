@@ -29,7 +29,7 @@ const useSimulationStore = create<SimulationStore>((set, get) => ({
       if (store.state.paused) return store;
 
       const newState = { ...store.state };
-      newState.tick += 1;
+      newState.tick += store.state.speed; // FIX: Account for simulation speed
 
       // Update each agent
       newState.agents = newState.agents.map((agent) => {
@@ -105,18 +105,24 @@ const useSimulationStore = create<SimulationStore>((set, get) => ({
         totalBuildings: newState.buildings.length,
       };
 
-      return store;
+      // FIX: Properly return updated state
+      return {
+        ...store,
+        state: newState,
+      };
     });
   },
 
   togglePause: () => {
     set((store) => ({
+      ...store,
       state: { ...store.state, paused: !store.state.paused },
     }));
   },
 
   setSpeed: (speed: number) => {
     set((store) => ({
+      ...store,
       state: { ...store.state, speed: Math.max(0.5, Math.min(8, speed)) },
     }));
   },
@@ -151,6 +157,7 @@ const useSimulationStore = create<SimulationStore>((set, get) => ({
 
   updateAgent: (agent: Agent) => {
     set((store) => ({
+      ...store,
       state: {
         ...store.state,
         agents: store.state.agents.map((a) => (a.id === agent.id ? agent : a)),
@@ -160,6 +167,7 @@ const useSimulationStore = create<SimulationStore>((set, get) => ({
 
   updateCompany: (company: Company) => {
     set((store) => ({
+      ...store,
       state: {
         ...store.state,
         companies: store.state.companies.map((c) => (c.id === company.id ? company : c)),
@@ -169,6 +177,7 @@ const useSimulationStore = create<SimulationStore>((set, get) => ({
 
   addEvent: (event: CityEvent) => {
     set((store) => ({
+      ...store,
       state: {
         ...store.state,
         events: [...store.state.events.slice(-99), event],
