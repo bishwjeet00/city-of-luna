@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 100%);
+  color: #e0e0ff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow: hidden;
+}
+
+.app {
+  background-color: #0a0e27;
+}
+
+/* Cyberpunk scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 240, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00f0ff 0%, #ff006e 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00f0ff 0%, #ffbe0b 100%);
+}
+
+/* Glow effects */
+.glow-primary {
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.3), inset 0 0 10px rgba(0, 240, 255, 0.1);
+}
+
+.glow-secondary {
+  box-shadow: 0 0 10px rgba(255, 0, 110, 0.3), inset 0 0 10px rgba(255, 0, 110, 0.1);
+}
+
+.glow-accent {
+  box-shadow: 0 0 10px rgba(255, 190, 11, 0.3), inset 0 0 10px rgba(255, 190, 11, 0.1);
+}
+
+/* Card styling */
+.card {
+  @apply bg-luna-900 border border-luna-700 rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow;
+}
+
+.card-header {
+  @apply text-lg font-semibold text-cyberpunk-primary mb-3 flex items-center gap-2;
+}
+
+.card-content {
+  @apply text-sm text-luna-200 space-y-2;
+}
+
+/* Button styling */
+.btn {
+  @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 border;
+}
+
+.btn-primary {
+  @apply bg-cyberpunk-primary text-cyberpunk-dark border-cyberpunk-primary hover:bg-opacity-80;
+}
+
+.btn-secondary {
+  @apply bg-luna-800 text-cyberpunk-primary border-luna-700 hover:bg-luna-700;
+}
+
+.btn-danger {
+  @apply bg-red-900 text-red-100 border-red-700 hover:bg-red-800;
+}
+
+/* Stat display */
+.stat {
+  @apply flex justify-between items-center py-2 px-3 bg-luna-800 rounded text-sm;
+}
+
+.stat-label {
+  @apply text-luna-300;
+}
+
+.stat-value {
+  @apply font-bold text-cyberpunk-primary;
+}
+
+/* Badge styling */
+.badge {
+  @apply inline-block px-2 py-1 rounded text-xs font-semibold;
+}
+
+.badge-success {
+  @apply bg-green-900 text-green-200;
+}
+
+.badge-warning {
+  @apply bg-yellow-900 text-yellow-200;
+}
+
+.badge-danger {
+  @apply bg-red-900 text-red-200;
+}
+
+.badge-info {
+  @apply bg-blue-900 text-blue-200;
+}
+
+/* Skill bar */
+.skill-bar {
+  @apply h-2 bg-luna-800 rounded-full overflow-hidden mt-1;
+}
+
+.skill-fill {
+  @apply h-full bg-gradient-to-r from-cyberpunk-primary to-cyberpunk-secondary rounded-full;
+}
+
+/* Animation utilities */
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
